@@ -8,6 +8,9 @@ Please do the following:
 - Create a new program called new.cpp from scratch - be creative
 - Compile and test this program
 - Commit your changes with
+
 `git add hello.cpp new.cpp`
+
 `git commit -m "lab 0"`
+
 `git push origin main`
