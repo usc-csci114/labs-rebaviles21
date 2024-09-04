@@ -3,7 +3,15 @@ For this lab we are going to build a program that reads in a file that describes
 
 We're going to get some experience with using classes for this lab, so we're going to use an object oriented approach. This means that we'll model the parts of a drawing as C++ structs or classes.
 
-For writing out our drawings we're using the `bmplib.h/cpp` files that are already included in the skeleton. Remember, all you need to do to use the functions in `bmplib.cpp` is to `#include bmplib.h` in your code. We've already done this for you in `draw.cpp`.
+For writing out our drawings we're using the `bmplib.h/cpp` files that are already included in the skeleton. Remember, all you need to do to use the functions in `bmplib.cpp` is to `#include bmplib.h` in your code. 
+
+For this lab you'll define your structs/classes in `drawing.h`, you'll implement the classes in `drawing.cpp` and you'll implement the main program in `draw.cpp`. This would allow us to re-use the objects in another program by including `drawing.h`
+
+To compile our program we'll use:
+
+```
+clang++ -Wall drawing.cpp draw.cpp -o draw
+```
 
 #### Objects
 
@@ -30,7 +38,7 @@ Each following line describes a line in the drawing with the following format:
 ```
 x1 y1 x2 y2 r g b
 ```
-Where `x1` `y1` `x2` `y2` are floating point values that set the start and end of a line and `r`, `g`, `b` are the values for the color (0-255).
+Where `x1` `y1` `x2` `y2` are floating point values that set the start and end of a line and `r`, `g`, `b` are the values for the color (0-255). All coordinate values will be between 0 and `xdim` or `ydim`. You do not need to do error checking on these values.
 
 Your task is to write a program that will read in the input file and produce a .bmp file called `output.bmp`. Since this is a lab to get practice with objects, we will be following an object oriented design approach.
 
@@ -92,6 +100,6 @@ class Drawing {
 ```
 This class models our drawing. The `parse()` method takes the input file and initilizes the `ColorImage` data member and then parses the rest of the input data into a vector of `Line` objects.
 
-The `draw()` method will iterate through the `lines` drawing each line into the `ColorImage` data member. We have given you a line drawing function that you can use to implement this.
+The `draw()` method will iterate through the `lines` drawing each line into the `ColorImage` data member. We have given you a line drawing function that you can use to implement this. The `plotLine()` function takes two points as the start and end of a line and will return a `vector<Point>`. Each `Point` in the vector represents a pixel that should be colored in to draw a line.
 
 The `write()` method will call the `render()` method on the `ColorImage` in order to write the output file for the image.
