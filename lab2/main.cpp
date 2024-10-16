@@ -25,11 +25,35 @@ int main(int argc, char* argv[])
 	uint8_t*** image = newImage(bg, 1024, 1024);
 	
 	//add your code here
-	
+	Point p1 = {10,10};
+	Point p2 = {110,10};
+	Point p3 = {110,110};
+	Point points[3] = {p1,p2,p3};
+	Color red = {255,0,0};
+	Triangle tri(points, red);
+	tri.draw(image,1024,1024);
+
+	Color blue = {0,0,255};
+	Point center = {512,512};
+	int rad = 200;
+	Circle circle(center,rad,blue);
+	circle.draw(image, 1024,1024);
+
+
+	Color green = {0,255,0};
+	Point t1 = {20,100};
+	Point t2 = {20,60};
+	Point t3 = {60,100};
+	Point t4 = {100,60};
+	Point recPoints[4] = {t1,t2,t3,t4};
+	Rectangle rec(recPoints, green);
+	rec.draw(image,1024,1024);
 	//ask the user what shape the want to draw
 	//collect the required information
 	//instantiate the shape, draw it into the image
 	//loop and ask for another shape, "quit" to stop
+
+	// Circle red = {0,0,255};
 	
 	writeRGBBMP("output.bmp", image, 1024, 1024);
 }
