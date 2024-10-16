@@ -1,6 +1,8 @@
+
 #include <iostream>
 #include <cmath>
 #include <vector>
+#include <stdexcept>
 
 #include "bmplib.h"
 #include "drawing.h"
@@ -44,3 +46,68 @@ std::vector<Point> plotLine(Point start, Point end)
 	}
 	return line;
 }
+ColorImage::ColorImage(uint32_t xdim, uint32_t ydim) 
+{
+    data.resize(ydim); //rows are all size 0 but there are no columns
+    for(size_t i = 0 ; i < data.size(); ++i) { // use size_t 
+        data[i].resize(xdim);    
+    }
+}
+void ColorImage:: setPixel(ColorPixel p, uint32_t x, uint32_t y) {
+	uint32_t ysize = data.size();
+	uint32_t xsize = data[0].size();
+
+	if(x < xsize && y < ysize) {
+		data[y][x] = p;
+	}
+}
+ColorPixel ColorImage::getPixel(uint32_t x, uint32_t y)
+{
+	uint32_t ysize = data.size();
+	uint32_t xsize = data[0].size();
+	if( x < xsize && y < ysize) {
+		return data[y][x];
+	}
+
+	throw std::range_error("Bad size on getPixel()");
+}
+
+void ColorImage:: render(string filename)
+{
+	size_t xdim = data[0].size();
+	size_t ydim = data.size();
+	uint8_t*** image = new uint8_t**[ydim]; // number of rows
+	for(int i = 0; i < data.size(); i++) {
+		image[i] = new uint8_t*[xdim];
+
+		for(int j =  0; j < xdim; j++) {
+			image[i][j] = new uint8_t[3];
+			image[i][j][R] = data[i][j].red; // abstracted data 
+			image[i][j][G] = data[i][j].green;
+			image[i][j][B] = data[i][j].blue;
+		}
+	}
+	writeRGBBMP(filename.c_str(), image, ydim, xdim); 
+}
+
+Drawing::Drawing() : image(0,0)
+{
+
+}
+void Drawing::parse(string filename)
+{
+	image = ColorImage(xdim,ydim); //replace existing image
+}
+void Drawing::draw()
+{
+
+	// for(size_t i = 0; i < lines.size();i++) {
+	// 	plotLine()
+	// }
+} // go throught vector of lines and will give to line drawing algorithm (plotline) ;; return vector of points an set to colors
+void Drawing::write(string filename){ //calls render
+	// render()
+}
+
+
+// still need to do draw and the write function
