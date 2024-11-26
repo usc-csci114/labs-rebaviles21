@@ -100,13 +100,24 @@ void Drawing::parse(string filename)
 }
 void Drawing::draw()
 {
+	for(size_t i = 0; i < lines.size();i++) {
+		Line line = lines[i];
+		vector <Point> coordinates  = plotLine(line.start,line.end); //points found
 
-	// for(size_t i = 0; i < lines.size();i++) {
-	// 	plotLine()
-	// }
-} // go throught vector of lines and will give to line drawing algorithm (plotline) ;; return vector of points an set to colors
-void Drawing::write(string filename){ //calls render
-	// render()
+		//color in the points 
+	for(size_t j = 0 ; j < coordinates.size();j++) {
+		Point coordData = coordinates[i];
+		if(coordData.y >= 0 && coordData.y < image.){
+
+		}
+		// ensure the coordinates are within the appropriate bounds to color in
+		
+	}
+	}
+}
+ // go throught vector of lines and will give to line drawing algorithm (plotline) ;; return vector of points an set to colors
+void Drawing::write(std::string filename){ //calls render
+	image.render(filename);
 }
 
 

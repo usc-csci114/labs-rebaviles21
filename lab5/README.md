@@ -27,11 +27,16 @@ int main(int argc, char* argv[])
     mystack.pop();
     t = mystack.top();
     cout << t << endl;
+}    
     
 ```
 Stacks are useful for several interestring algorithms. One simple algorithm is to reverse a sequence by pushing all of the items onto a stack and then popping all of the items off the stack.
 
 #### Your Task Part 1a
+
+while(cin >> x) {
+    vector.pushback
+}
 
 Write a C++ program that reads in integers from the user until the user hits `ctrl-d`. The integers should be put into a vector. Print out the vector in-order, then use a STL stack to reverse the sequence and print it out in reverse order.
 
@@ -109,3 +114,14 @@ Now modify your code using the ideas from lab 4 to increase the size of the vect
 
 Use the (size, time) data points to prove heap-sort is O(n log n).
 
+
+
+Notes for csci 114:
+
+//stack start scanning left to right onto a stack (individually)-- read as a string (check the top of the stack;)
+// found the closed bracket (does it match ) if so remove it from the stack
+// push push then pop pop (if found) ex <[]>
+
+check: if you get to the end (if the stack is empty)
+check: if the bracket is closed or not matching at all (>[])-- open 
+look up opposite

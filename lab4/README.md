@@ -4,7 +4,7 @@ In this lab we will practice measuring the time it takes for pieces of code to r
 
 The basic process is as follows:
 
-* log the start time (using the `<chrono>` library in C++
+* log the start time (using the `<chrono>`) library in C++
 * Perform some work that depends on an input size `n`
 * log the end time
 * Calculate the elapsed time
@@ -30,9 +30,9 @@ int main(){
 	{
 		vector<int> v;
 		v.resize(size*i);
-		v.reserve(2*size*i);
+		v.reserve(2*size*i); (reserve not needed in lab5 )
 		const auto start = std::chrono::steady_clock::now();
-		v.insert(v.begin(),42);
+		v.insert(v.begin(),42); //line will be replaced with line (in lab 5)
 		const auto end = std::chrono::steady_clock::now();
 		const std::chrono::duration<double> diff = end - start;
 		cout << "Inserting at v.begin() for size " << v.size() << " " << diff.count() << endl;
@@ -166,3 +166,6 @@ Once you have values for this test, there is a bit of a problem: the fitting alg
 ### Deliverable
 
 Create a Google Sheet with a tab for each part. Include your data, the output of the LINEST() function and a scatter chart with trendline for each.
+
+
+measuring the runtime of inserting at the beginning of a vector is o(n) 

@@ -110,12 +110,25 @@ Rectangle::Rectangle(Point r[4], Color c) :Shape(c) {
 Rectangle::~Rectangle() {};
 
 bool Rectangle::inside(uint32_t x, uint32_t y){
-    double dx = x; //uses the virtual functions and the bounding boxes
-    double dy = y;
+    
+    BoundingBox bounds = getBoundingBox();
+    if(x >= bounds.ul.x && x <= bounds.br.x) {
+        // within the range of x
+        if(y >= bounds.ul.y && y <= bounds.br.y) {
+            return true;
+        }
+    }
+    return false;
+    // must be within bounds
 
 } 
 BoundingBox Rectangle::getBoundingBox() {
+    BoundingBox b;
+    b.ul.x = min(min(m_rec[0].x, m_rec[1].x), min(m_rec[2].x, m_rec[3].x));
+    b.ul.y = min(min(m_rec[0].y, m_rec[1].y), min(m_rec[2].y, m_rec[3].y));
 
-} //how do you get the bounding box for a triangle?
+    b.br.x = max(max(m_rec[0].x, m_rec[1].x), max(m_rec[2].x, m_rec[3].x));
+    b.br.y = max(max(m_rec[0].y, m_rec[1].y), max(m_rec[2].y, m_rec[3].y));
 
-//getting an error with the linkage (-v)
+    return b; 
+} 

@@ -39,14 +39,14 @@ int main(int argc, char* argv[])
 	Circle circle(center,rad,blue);
 	circle.draw(image, 1024,1024);
 
-
-	Color green = {0,255,0};
-	Point t1 = {20,100};
-	Point t2 = {20,60};
-	Point t3 = {60,100};
-	Point t4 = {100,60};
+	//rectangles code
+	Color reds = {0,255,0};
+	Point t1 = {10,20};
+	Point t2 = {110,20};
+	Point t3 = {10,70};
+	Point t4 = {110,70};
 	Point recPoints[4] = {t1,t2,t3,t4};
-	Rectangle rec(recPoints, green);
+	Rectangle rec(recPoints, reds);
 	rec.draw(image,1024,1024);
 	//ask the user what shape the want to draw
 	//collect the required information

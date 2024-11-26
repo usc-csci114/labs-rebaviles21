@@ -13,13 +13,21 @@ int main(){
 		list<int> my_list;
 		
 		//1. Resize my_list to have size*x items
+		my_list.resize(size*x);
 		
 		//2. log the start time (see part 1)
-		
+		const auto start = std::chrono::steady_clock::now();
+
 		//3. Use a for loop with an iterator to iterate through all items in the list
 		//   The body of the for loop can be empty
-		
+		auto iterator = my_list.begin();
+		for(size_t i = 0; i < my_list.size();i++) {
+
+		}
+
 		//4. log the end time and calculate the diff
+		const auto end = std::chrono::steady_clock::now();
+		const std::chrono::duration<double> diff = end - start;
 
 		cout << "Iterating linked list for size " << my_list.size() << ": ";
 		cout << diff.count() << endl;
